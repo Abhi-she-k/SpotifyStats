@@ -1,0 +1,24 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "16": "^0.0.2",
+    "axios": "^0.27.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "node": "^17.7.2",
+    "node-fetch": "^2.6.1",
+    "node-sessionstorage": "^1.0.0",
+    "randomstring": "^1.2.2",
+    "request": "^2.88.2",
+    "store": "^2.0.12"
+  }
+}
