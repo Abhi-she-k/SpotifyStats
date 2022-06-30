@@ -13,7 +13,7 @@ const redirect_uri = 'http://localhost:3002/callback';
 const client_secret = '5419800129b84a63920a4d20d12fbb6e'
 const scope = 'user-read-private user-read-email ugc-image-upload user-top-read user-library-read user-library-modify user-read-recently-played playlist-modify-private playlist-read-collaborative user-read-playback-state playlist-read-private' 
 
-app.listen(process.env.PORT,() => {
+app.listen(process.env.PORT ||3002,() => {
 	console.log(`Example app listening at http://localhost:${port}`);
 });
 
