@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://db.onlinewebfonts.com/c/3a47f5f06b5484abfeee9eac90348a9c?family=Gotham" rel="stylesheet" type="text/css"/>
+    <title>Stats</title>
 </head>
 <body>
-    <h1>Sorry an error has occured</h1>
+    <script>
+        if(performance.navigation.type==1) {
+            window.location.href='index.html'
+        }
+
+    </script>
+    
+
+    <div id="topPage" style="background-color:#191414;">
+        <h4 id="title"  style="margin-top: 10px; margin-left: 15px;"><img src="images/unnamed.png" alt="" style="height: 50px; width: 50px; padding-right: 10px; position: relative; top:5px">Stats<button id="btn2" onclick="window.open('https://accounts.spotify.com/en/logout','_blank');window.location.reload();" style="background-color: red;" ><center>Log Out</center> </button></h>
+    </div>
+
+  
+
+    <div class="socials">
+        <img class="socialbtn" src="images/git.png" alt=""><a href="#topPage"><img id="top" src="images/top.png" alt=""></a>
+        <img class="socialbtn" src="images/linkedin.png" alt="">
+        <img class="socialbtn" src="images/Gmail.png" alt="">
+    </div>
+
+
+    <h1>Sorry an error occured</h1>
 </body>
+
 </html>
