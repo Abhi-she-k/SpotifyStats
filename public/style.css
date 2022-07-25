@@ -1,7 +1,7 @@
 h1, h2, h3, h4, h5, h6, strong{
 	padding: 0;
     color:white;
-    font-family: "Gotham";
+    font-family: "Montserrat";
 	
 }
 
@@ -40,7 +40,7 @@ a:visited {
 	width:300px;
 	font-size: 25px;
 	color: white;
-	font-family: "Gotham";
+	font-family: "Montserrat";
 	border-radius: 40px;
 	background-color: #191414;
 	cursor: pointer;
@@ -103,7 +103,7 @@ a:visited {
 	width:200px;
 	font-size: 18px;
 	color: white;
-	font-family: "Gotham";
+	font-family: "Montserrat";
 	border-radius: 30px;
 	cursor: pointer;
 	transition: 0.5s;
@@ -241,7 +241,7 @@ a:visited {
 	border-radius:30px;
 	margin: 15px;
 	color: white;
-	font-family: "Gotham";
+	font-family: "Montserrat";
 	transition: 0.5s;
 	border-width: 0;
 	font-size: 20px;
