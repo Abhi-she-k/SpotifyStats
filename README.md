@@ -30,3 +30,15 @@ Top Artist:
 Top Songs:
 
 ![topsongs](https://user-images.githubusercontent.com/87787307/180897094-ff67a482-4417-454b-900f-e64094949fea.PNG)
+
+
+Recently Played Tracks:
+
+![recently played](https://user-images.githubusercontent.com/87787307/180897276-51e501c0-4177-4b39-93a6-ac832e7c7f33.PNG)
+
+
+
+
+
+
+
