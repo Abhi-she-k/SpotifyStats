@@ -95,6 +95,7 @@ app.get('/check',async function(req,res){
   try{
     const data = await getData('/me');
     res.redirect('/stats.html')
+
   }
   catch(error){
     res.redirect('/error.html')
@@ -104,12 +105,13 @@ app.get('/check',async function(req,res){
 
 
 app.get('/user',async function(req,res){  
+    const data = await getData('/me');
     try{
-      const data = await getData('/me');
       res.json({name: data.display_name, pic: data.images[0].url, followers: data.followers.total})
+      
     }
     catch{
-      res.send()
+      res.json({name: data.display_name, followers: data.followers.total})
     }
 
 })

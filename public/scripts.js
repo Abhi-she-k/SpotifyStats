@@ -15,7 +15,7 @@ async function userInfo(){
     var user = await getStat('user')
 
     let info = document.getElementsByClassName("UserInfo")[0];
-
+    
     let img = document.createElement("img");
     let name = document.createElement("h3");
     let followers = document.createElement("h6");
