@@ -136,6 +136,11 @@ a:visited {
 	width: 200px;
 }
 
+.time{
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
 .TopArtists{
 	text-align: center;
 	display: flex;
