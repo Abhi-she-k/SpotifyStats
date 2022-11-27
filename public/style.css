@@ -59,6 +59,7 @@ a:visited {
 	display: flex;
 	flex-direction: column;
 	z-index: 1;
+	font-size: 0px;
 }
 
 .socialbtn{
