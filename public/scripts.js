@@ -45,6 +45,8 @@ async function topArt(time, div){
  
     count++
     let div = document.createElement("div")
+    let link = document.createElement("a")
+    link.setAttribute('href', item.url)
     div.className="Child1"
     let text = document.createElement("h5");
     let pic = document.createElement("img");
@@ -52,14 +54,16 @@ async function topArt(time, div){
     pic.src = item.pic
     text.id = "text"
     pic.id = "Pic"
+    link.href = item.url
     text.style.width="300px"
     if(count<=3){
         text.style.color="#FFD700"
     }
     
+    link.appendChild(div)
     div.append(pic);
     div.append(text);
-    list.appendChild(div)
+    list.appendChild(link)
     })
 }
 
@@ -72,6 +76,7 @@ async function topSong(time, div){
  
     count++
     let div = document.createElement("div")
+    let link = document.createElement("a")
     div.className="Child2"
     let text = document.createElement("h5");
     let pic = document.createElement("img");
@@ -79,14 +84,16 @@ async function topSong(time, div){
     pic.src = item.pic
     text.id = "text"
     pic.id = "Pic"
+    link.href = item.url
     text.style.width="300px"
     if(count<=3){
         text.style.color="#FFD700"
     }
     
+    link.appendChild(div)
     div.append(pic);
     div.append(text);
-    list.appendChild(div)
+    list.appendChild(link)
     })
 }
 
@@ -98,6 +105,7 @@ async function userHistory(){
     stats.forEach((item)=>{
     count++
     let div = document.createElement("div")
+    let link = document.createElement("a")
     div.className="Child2"
     let text = document.createElement("h5");
     let pic = document.createElement("img");
@@ -105,12 +113,16 @@ async function userHistory(){
     pic.src = item.pic
     text.id = "songhis"
     pic.id = "Pic"
+    link.href = item.url
     text.style.color="#FFD700"
+    
+    link.appendChild(div)
     div.append(pic);
     div.append(text);
-    list.appendChild(div)
+    list.appendChild(link)
     })
 }
+
 
 userInfo()
 topArt('TopArtShort',0)

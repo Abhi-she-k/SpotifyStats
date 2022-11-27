@@ -78,7 +78,7 @@ async function getData(endpoint) {
 async function getInfoArt(data){
   dataList = []
   for(const a in data.items){
-    dataList.push({name: data.items[a].name, pic: data.items[a].images[0].url})
+    dataList.push({name: data.items[a].name, pic: data.items[a].images[0].url, url: data.items[a].uri})
   }
   return dataList
 }
@@ -86,7 +86,7 @@ async function getInfoArt(data){
 async function getInfoSong(data){
   dataList = []
   for(const a in data.items){
-    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[0].url})
+    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[0].url, url: data.items[a].uri})
   }
   return dataList
 }
@@ -95,7 +95,6 @@ app.get('/check',async function(req,res){
   try{
     const data = await getData('/me');
     res.redirect('/stats.html')
-
   }
   catch(error){
     res.redirect('/error.html')
@@ -105,7 +104,10 @@ app.get('/check',async function(req,res){
 
 
 app.get('/user',async function(req,res){  
+    
     const data = await getData('/me');
+
+    
     try{
       res.json({name: data.display_name, pic: data.images[0].url, followers: data.followers.total})
       
@@ -113,12 +115,17 @@ app.get('/user',async function(req,res){
     catch{
       res.json({name: data.display_name, followers: data.followers.total})
     }
+    
+
+      
+    
 
 })
 
 app.get('/TopArtShort',async function(req,res){
   
   const TopArtShort = await getData('/me/top/artists?time_range=short_term&limit=5&offset=0');
+  const li = await getInfoArt(TopArtShort)
   res.json(await getInfoArt(TopArtShort))
 
 })
@@ -168,17 +175,11 @@ app.get('/his',async function(req,res){
   
   dataList=[]
   for(const a in his.items){
-    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url})
+    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri})
   }
-
   res.json(await dataList)
 
 })
-
-
-// app.get('/id', function(req,res){
-//   res.json('fdsfs')
-// })
 
 
 
