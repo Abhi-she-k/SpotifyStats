@@ -171,7 +171,7 @@ app.get('/TopSongLong',async function(req,res){
 
 app.get('/his',async function(req,res){
   
-  const his = await getData('/me/player/recently-played/?limit=100');
+  const his = await getData('/me/player/recently-played/?limit=25');
   
   dataList=[]
   for(const a in his.items){
