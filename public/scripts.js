@@ -1,6 +1,6 @@
 async function getStat(endpoint){
     try{
-        const response = await fetch('https://idyllic-fairy-05023e.netlify.app/callback'+endpoint)
+        const response = await fetch('https://spotfystats1.herokuapp.com/'+endpoint)
         data = await response;
         return await data.json()
     }
