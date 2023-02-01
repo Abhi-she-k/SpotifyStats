@@ -1,6 +1,6 @@
 This is SpotifyStats, an app the displays users top listened to tracks and artists.
 
-***DISCLAIMER: Since app is not fully published users may be limited. Please email abhishek.paul@ryerson.com for 
+***DISCLAIMER: Since app is not fully published users may be limited. Please email abhishek.paul@torontomu.com for 
 access to the application. 
 
 [Website Link](https://bit.ly/3z9AYVR)
