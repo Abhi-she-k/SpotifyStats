@@ -1,6 +1,6 @@
 async function getStat(endpoint){
     try{
-        const response = await fetch('https://spotifystats2.herokuapp.com/'+endpoint)
+        const response = await fetch('http://localhost:3002/'+endpoint)
         data = await response;
         return await data.json()
     }
