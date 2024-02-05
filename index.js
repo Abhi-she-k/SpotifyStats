@@ -79,7 +79,7 @@ async function getData(endpoint) {
 async function getInfoArt(data){
   dataList = []
   for(const a in data.items){
-    dataList.push({name: data.items[a].name, pic: data.items[a].images[0].url, url: data.items[a].uri})
+    dataList.push({name: data.items[a].name, pic: data.items[a].images[1].url, url: data.items[a].uri})
   }
   return dataList
 }
@@ -87,7 +87,7 @@ async function getInfoArt(data){
 async function getInfoSong(data){
   dataList = []
   for(const a in data.items){
-    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[0].url, url: data.items[a].uri})
+    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[1].url, url: data.items[a].uri})
   }
   return dataList
 }
@@ -110,7 +110,7 @@ app.get('/user',async function(req,res){
 
     
     try{
-      res.json({name: data.display_name, pic: data.images[0].url, followers: data.followers.total})
+      res.json({name: data.display_name, pic: data.images[1].url, followers: data.followers.total})
       
     }
     catch{
@@ -123,56 +123,26 @@ app.get('/user',async function(req,res){
 
 })
 
-app.get('/TopArtShort',async function(req,res){
-  
-  const TopArtShort = await getData('/me/top/artists?time_range=short_term&limit=5&offset=0');
+app.get('/TopArt/:length',async function(req,res){
+  const length = req.params.length;
+  const TopArtShort = await getData(`/me/top/artists?time_range=${length}_term&limit=5&offset=0`);
   const li = await getInfoArt(TopArtShort)
   res.json(await getInfoArt(TopArtShort))
 
 })
 
-app.get('/TopArtMed',async function(req,res){
-  
-  const TopArtMed = await getData('/me/top/artists?time_range=medium_term&limit=5&offset=0');
-  res.json(await getInfoArt(TopArtMed))
 
-})
-
-
-app.get('/TopArtLong',async function(req,res){
-  
-  const TopArtLong = await getData('/me/top/artists?time_range=long_term&limit=5&offset=0');
-  res.json(await getInfoArt(TopArtLong))
-
-})
-
-
-app.get('/TopSongShort',async function(req,res){
-  
-  const TopSongShort = await getData('/me/top/tracks?time_range=short_term&limit=5&offset=0');
+app.get('/TopSong/:length',async function(req,res){
+  const length = req.params.length;
+  const TopSongShort = await getData(`/me/top/tracks?time_range=${length}_term&limit=5&offset=0`);
   res.json(await getInfoSong(TopSongShort))
 
 })
 
 
-
-app.get('/TopSongMed',async function(req,res){
-  
-  const TopSongMed = await getData('/me/top/tracks?time_range=medium_term&limit=5&offset=0');
-  res.json(await getInfoSong(TopSongMed))
-
-})
-
-app.get('/TopSongLong',async function(req,res){
-  
-  const TopSongLong = await getData('/me/top/tracks?time_range=long_term&limit=5&offset=0');
-  res.json(await getInfoSong(TopSongLong))
-
-})
-
 app.get('/his',async function(req,res){
   
-  const his = await getData('/me/player/recently-played/?limit=50');
+  const his = await getData('/me/player/recently-played/?limit=25');
   
   dataList=[]
   for(const a in his.items){

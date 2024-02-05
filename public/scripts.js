@@ -37,7 +37,7 @@ async function userInfo(){
 
 
 async function topArt(time, div){
-    var stats = await getStat(time)
+    var stats = await getStat("TopArt/" + time)
     var count = 0;
     let list = document.getElementsByClassName("time")[div];
 
@@ -68,7 +68,7 @@ async function topArt(time, div){
 }
 
 async function topSong(time, div){
-    var stats = await getStat(time)
+    var stats = await getStat("TopSong/" + time)
     var count = 0;
     let list = document.getElementsByClassName("time")[div];
 
@@ -97,7 +97,7 @@ async function topSong(time, div){
     })
 }
 
-async function userHistory(){
+async function otherStats(){
     var stats = await getStat('his')
     var count = 0;
     let list = document.getElementsByClassName("History")[0];
@@ -125,13 +125,10 @@ async function userHistory(){
 
 
 userInfo()
-topArt('TopArtShort',0)
-topArt('TopArtMed',1)
-topArt('TopArtLong',2)
-topSong('TopSongShort',3)
-topSong('TopSongMed',4)
-topSong('TopSongLong',5)
-topSong('TopSongShort',6)
-topSong('TopSongMed',7)
-topSong('TopSongLong',8)
-userHistory()
+topArt('short',0)
+topArt('medium',1)
+topArt('long',2)
+topSong('short',3)
+topSong('medium',4)
+topSong('long',5)
+otherStats()
