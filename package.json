@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
-
   },
   "keywords": [],
   "author": "",
@@ -14,7 +13,7 @@
     "16": "^0.0.2",
     "axios": "^0.27.2",
     "cookie-parser": "^1.4.6",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "node": "^17.7.2",
     "node-fetch": "^2.6.1",
     "node-sessionstorage": "^1.0.0",
@@ -23,4 +22,3 @@
     "store": "^2.0.12"
   }
 }
-
