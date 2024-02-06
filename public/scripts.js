@@ -36,10 +36,10 @@ async function userInfo(){
 }
 
 
-async function topArt(time, div){
-    var stats = await getStat("TopArt/" + time)
+async function topUserData(endpoint, div){
+    var stats = await getStat(endpoint)
     var count = 0;
-    let list = document.getElementsByClassName("time")[div];
+    let list = document.getElementsByClassName("Songs")[div];
 
     stats.forEach((item)=>{
  
@@ -47,52 +47,23 @@ async function topArt(time, div){
     let div = document.createElement("div")
     let link = document.createElement("a")
     link.setAttribute('href', item.url)
-    div.className="Child1"
-    let text = document.createElement("h5");
-    let pic = document.createElement("img");
-    text.innerText = count  + ". " + item.name;
-    pic.src = item.pic
-    text.id = "text"
-    pic.id = "Pic"
-    link.href = item.url
-    text.style.width="300px"
-    if(count<=3){
-        text.style.color="#FFD700"
-    }
-    
-    link.appendChild(div)
-    div.append(pic);
-    div.append(text);
-    list.appendChild(link)
-    })
-}
-
-async function topSong(time, div){
-    var stats = await getStat("TopSong/" + time)
-    var count = 0;
-    let list = document.getElementsByClassName("time")[div];
-
-    stats.forEach((item)=>{
- 
-    count++
-    let div = document.createElement("div")
-    let link = document.createElement("a")
     div.className="Child2"
     let text = document.createElement("h5");
+    text.className="Child2Text"
     let pic = document.createElement("img");
     text.innerText = count  + ". " + item.name;
     pic.src = item.pic
     text.id = "text"
+    text.style.width="300px"
     pic.id = "Pic"
     link.href = item.url
-    text.style.width="300px"
     if(count<=3){
         text.style.color="#FFD700"
     }
     
     link.appendChild(div)
     div.append(pic);
-    div.append(text);
+    div.appendChild(text);
     list.appendChild(link)
     })
 }
@@ -108,27 +79,35 @@ async function otherStats(){
     let link = document.createElement("a")
     div.className="Child2"
     let text = document.createElement("h5");
+    text.className="Child2Text"
+    let text2 = document.createElement("h5");
+    text2.className="Child2Text2"
     let pic = document.createElement("img");
     text.innerText = count + ". "+item.name;
+    text2.innerText = "test";
     pic.src = item.pic
     text.id = "songhis"
+    text2.id = "songhis"
     pic.id = "Pic"
     link.href = item.url
     text.style.color="#FFD700"
-    
+    text2.style.color="#FFD700"
+
     link.appendChild(div)
     div.append(pic);
-    div.append(text);
+    div.appendChild(text);
+    div.appendChild(text2);
     list.appendChild(link)
+
     })
 }
 
 
 userInfo()
-topArt('short',0)
-topArt('medium',1)
-topArt('long',2)
-topSong('short',3)
-topSong('medium',4)
-topSong('long',5)
+topUserData('TopArt/short',0)
+topUserData('TopArt/medium',1)
+topUserData('TopArt/long',2)
+topUserData('TopSong/short',3)
+topUserData('TopSong/medium',4)
+topUserData('TopSong/long',5)
 otherStats()
