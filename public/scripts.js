@@ -46,24 +46,31 @@ async function topUserData(endpoint, div){
     count++
     let div = document.createElement("div")
     let link = document.createElement("a")
-    link.setAttribute('href', item.url)
     div.className="Child2"
     let text = document.createElement("h5");
     text.className="Child2Text"
+    let text2 = document.createElement("h5");
+    text2.className="Child2Text2"
     let pic = document.createElement("img");
-    text.innerText = count  + ". " + item.name;
+    text.innerText = count + ". "+item.name;
+    text2.innerText = "Popularity\n" + item.popularity + "\n\nGenres\n" + item.genres;
     pic.src = item.pic
-    text.id = "text"
-    text.style.width="300px"
+    text.id = "songhis"
+    text2.id = "songhis"
     pic.id = "Pic"
     link.href = item.url
     if(count<=3){
         text.style.color="#FFD700"
     }
+    text2.style.color="#E6E6FA"
+    text2.style.Width="1000px"
+    text2.style.fontSize="20px"
+
     
     link.appendChild(div)
     div.append(pic);
     div.appendChild(text);
+    div.appendChild(text2);
     list.appendChild(link)
     })
 }
@@ -72,7 +79,6 @@ async function otherStats(){
     var stats = await getStat('his')
     var count = 0;
     let list = document.getElementsByClassName("History")[0];
-
     stats.forEach((item)=>{
     count++
     let div = document.createElement("div")

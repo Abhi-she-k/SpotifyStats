@@ -76,10 +76,25 @@ async function getData(endpoint) {
   return data.json();
 }
 
+function getListItems(data){
+
+    let items = ""
+    let count = 0;
+
+    for(const a in data){
+      if(count == 2){
+        return items
+      }
+      items+=data[a]+ "\n"
+      count+=1
+    }
+    return items
+}
+
 async function getInfoArt(data){
   dataList = []
   for(const a in data.items){
-    dataList.push({name: data.items[a].name, pic: data.items[a].images[1].url, url: data.items[a].uri})
+    dataList.push({name: data.items[a].name, pic: data.items[a].images[1].url, url: data.items[a].uri, popularity: data.items[a].popularity, genres: getListItems(data.items[a].genres)})
   }
   return dataList
 }
@@ -116,17 +131,11 @@ app.get('/user',async function(req,res){
     catch{
       res.json({name: data.display_name, followers: data.followers.total})
     }
-    
-
-      
-    
-
 })
 
 app.get('/TopArt/:length',async function(req,res){
   const length = req.params.length;
   const TopArtShort = await getData(`/me/top/artists?time_range=${length}_term&limit=5&offset=0`);
-  const li = await getInfoArt(TopArtShort)
   res.json(await getInfoArt(TopArtShort))
 
 })
@@ -139,6 +148,18 @@ app.get('/TopSong/:length',async function(req,res){
 
 })
 
+
+app.get('/his',async function(req,res){
+  
+  const his = await getData('/me/player/recently-played/?limit=25');
+  
+  dataList=[]
+  for(const a in his.items){
+    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri})
+  }
+  res.json(await dataList)
+
+})
 
 app.get('/his',async function(req,res){
   
