@@ -102,7 +102,11 @@ async function getInfoArt(data){
 async function getInfoSong(data){
   dataList = []
   for(const a in data.items){
-    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[1].url, url: data.items[a].uri})
+    let dur = data.items[a].duration_ms
+    const date =  new Date(1000*Math.round(dur/1000));
+    function pad(i) { return ('0'+i).slice(-2); }
+    var minutes = pad(date.getUTCMinutes()) + ':' + pad(date.getUTCSeconds());
+    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[1].url, url: data.items[a].uri, date: data.items[a].album.release_date, duration: minutes})
   }
   return dataList
 }
@@ -155,23 +159,27 @@ app.get('/his',async function(req,res){
   
   dataList=[]
   for(const a in his.items){
-    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri})
+    let dur = his.items[a].track.duration_ms
+    const date2 =  new Date(1000*Math.round(dur/1000));
+    function pad(i) { return ('0'+i).slice(-2); }
+    var minutes = pad(date2.getUTCMinutes()) + ':' + pad(date2.getUTCSeconds());
+    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri, date: his.items[a].track.album.release_date, duration: minutes})
   }
   res.json(await dataList)
 
 })
 
-app.get('/his',async function(req,res){
+// app.get('/his',async function(req,res){
   
-  const his = await getData('/me/player/recently-played/?limit=25');
+//   const his = await getData('/me/player/recently-played/?limit=25');
   
-  dataList=[]
-  for(const a in his.items){
-    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri})
-  }
-  res.json(await dataList)
+//   dataList=[]
+//   for(const a in his.items){
+//     await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri})
+//   }
+//   res.json(await dataList)
 
-})
+// })
 
 
 

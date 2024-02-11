@@ -53,7 +53,12 @@ async function topUserData(endpoint, div){
     text2.className="Child2Text2"
     let pic = document.createElement("img");
     text.innerText = count + ". "+item.name;
-    text2.innerText = "Popularity\n" + item.popularity + "\n\nGenres\n" + item.genres;
+    if(endpoint.includes("TopArt")){
+        text2.innerText = "Popularity\n" + item.popularity + "\n\nGenres\n" + item.genres;
+    }
+    else{
+        text2.innerText = "Release Date\n" + item.date + "\n\nDuration\n" + item.duration;
+    }
     pic.src = item.pic
     text.id = "songhis"
     text2.id = "songhis"
@@ -90,14 +95,16 @@ async function otherStats(){
     text2.className="Child2Text2"
     let pic = document.createElement("img");
     text.innerText = count + ". "+item.name;
-    text2.innerText = "test";
+    text2.innerText = "Release Date\n" + item.date + "\n\nDuration\n" + item.duration;
     pic.src = item.pic
     text.id = "songhis"
     text2.id = "songhis"
     pic.id = "Pic"
     link.href = item.url
     text.style.color="#FFD700"
-    text2.style.color="#FFD700"
+    text2.style.color="#E6E6FA"
+    text2.style.Width="1000px"
+    text2.style.fontSize="20px"
 
     link.appendChild(div)
     div.append(pic);
