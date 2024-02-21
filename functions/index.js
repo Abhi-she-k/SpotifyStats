@@ -157,7 +157,7 @@ app.get('/his',async function(req,res){
   
   dataList=[]
   for(const a in his.items){
-    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri,id: his.items[a].track.id})
+    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[1].url, url: his.items[a].track.uri,id: his.items[a].track.id})
 
   }
   res.json(await dataList)

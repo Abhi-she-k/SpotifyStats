@@ -79,9 +79,6 @@ async function stats(endpoint, div, type){
     
     pic.id = "Pic"
     link.href = item.url
-    if(count<=3){
-        text.style.color="#FFD700"
-    }
 
 
     
