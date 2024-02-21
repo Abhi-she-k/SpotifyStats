@@ -14,7 +14,7 @@ html {
 }
 
 body{
-    background: linear-gradient(90deg,#27d463, #0b4112);
+    background: linear-gradient(90deg,#27d463, #36ce4b);
 }
 
 
@@ -201,6 +201,16 @@ a:visited {
 	flex-wrap: wrap;
 }
 
+.Playlists{
+	text-align: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 
 
 .Child2{
@@ -220,22 +230,26 @@ a:visited {
 	flex-direction: column; /* Stack image and text vertically */
 	align-items: center; /* Center items horizontally within the flex container */
 	margin: 15px;
-	transition:1s;
+	transition:0.20s;
 	
 }	
 
 
+
+
 .Child2:hover{
 	transform: scale(1.15);
-	background-color: #fffbfb41;
+	background-color: #29292994;
 	z-index: -1;
-	transition: 1s;
+	transition: 0.5s;
 	
 }
 
 .Child2:hover #Pic {
 	transition:1s;
-	filter:blur(5px);	
+	filter:blur(20px);
+	background-color: blue;
+	
 	
 }
 
@@ -251,45 +265,21 @@ a:visited {
 .Child2Text2{
 	visibility: hidden;
 	position: absolute;
-	top: 35%;
-	left: 44.25%;
-	transform: translate(-50%, -50%);
     opacity: 1;
     transition: visibility 0s ease;
-	background: linear-gradient(150deg, #b9ffc337 0%, #91969156 100%);
 	padding:25px;
 	padding-left: 70px;
 	padding-right: 70px;
 	border-radius: 10px;
-	width: 150px;
     opacity: 0;
 	transition:visibility 0.3s linear,opacity 0.3s linear;
+	z-index: 1;
 
-}
-
-.Child2Text{
-	text-align: center;
-}
-
-#songHis{
-	position: relative;
-	clear: none;
-}
-
-
-#text{
-	font-size: 25px;
-	width: 450px;
-	margin-left:10px;
-	margin-right:10px;
 }
 
 
 #songhis{
 	font-size: 25px;
-	margin-left:20px;
-	margin-right:20px;
-	margin-bottom: 100px;	
 }
 
 #Pic{
@@ -298,7 +288,6 @@ a:visited {
 	margin-bottom: -30px;
 	border-radius: 50%;
 	margin-top: 20px;
-	
 }
 
 
@@ -306,8 +295,6 @@ a:visited {
 	text-align: center;
 	margin-top:30px;
 	margin-bottom: -10px;
-	
-	
 }
 
 .conBut{
@@ -329,3 +316,31 @@ a:visited {
 	padding-right: 25px;
 	background-color: #191414;
 }
+
+
+.loader-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color:  #17a4497a;;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999; 
+  }
+  
+  .loader {
+	border: 8px solid #f3f3f3;
+	border-top: 8px solid  #15873d;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	animation: spin 0.5s linear infinite; 
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }

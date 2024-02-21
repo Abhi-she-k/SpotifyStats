@@ -18,6 +18,20 @@
         }
 
     </script>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <script>
+        // JavaScript to hide loader when page is fully loaded
+        window.addEventListener("load", function() {
+                setTimeout(function() {
+                const loader = document.querySelector(".loader-wrapper");
+                loader.style.display = "none";
+            }, 1000); // 3000 milliseconds = 3 seconds
+        });
+    </script>
     
 
     <div id="topPage" style="background-color:#191414;">
@@ -30,6 +44,7 @@
         <a href="#art"><button class="conBut" name="Artists">Top Artists</button></a>
         <a href="#song"><button class="conBut" name="Songs">Top Songs</button></a>
         <a href="#his"><button class="conBut" name="History">Recently Played</button></a>
+        <a href="#playlists"><button class="conBut" name="History">My Playlists</button></a>
     </div>
 
  
@@ -74,6 +89,8 @@
         </div>
     </div>
 
+    
+
 
 
     
@@ -81,9 +98,9 @@
     <div class="History">
     </div>
 
-
-
-
+    <h3 class ="Title2" id="playlists">My Playlists</h3>
+    <div class="Playlists">
+    </div>
 
     <script src = "scripts.js"></script>
 </body>

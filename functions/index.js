@@ -12,7 +12,7 @@ const client_id = 'df40d135664a4a2cbae1c4db4de04977';
 const local_host = 'http://localhost:3002'
 const redirect_uri = local_host+'/callback';
 const client_secret = '5419800129b84a63920a4d20d12fbb6e'
-const scope = 'user-read-private user-read-email ugc-image-upload user-top-read user-library-read user-library-modify user-read-recently-played playlist-modify-private playlist-read-collaborative user-read-playback-state playlist-read-private' 
+const scope = 'user-read-private user-read-email ugc-image-upload user-top-read user-library-read user-library-modify user-read-recently-played playlist-modify-private playlist-read-collaborative user-read-playback-state' 
 
 app.listen(process.env.PORT ||3002,() => {
 	console.log(`Example app listening at http://localhost:${port}`);
@@ -96,18 +96,16 @@ async function getInfoArt(data){
   for(const a in data.items){
     dataList.push({name: data.items[a].name, pic: data.items[a].images[1].url, url: data.items[a].uri, popularity: data.items[a].popularity, genres: getListItems(data.items[a].genres)})
   }
+  
   return dataList
 }
 
 async function getInfoSong(data){
   dataList = []
   for(const a in data.items){
-    let dur = data.items[a].duration_ms
-    const date =  new Date(1000*Math.round(dur/1000));
-    function pad(i) { return ('0'+i).slice(-2); }
-    var minutes = pad(date.getUTCMinutes()) + ':' + pad(date.getUTCSeconds());
-    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[1].url, url: data.items[a].uri, date: data.items[a].album.release_date, duration: minutes})
+    dataList.push({name: data.items[a].name, pic: data.items[a].album.images[1].url, url: data.items[a].uri, id: data.items[a].id})
   }
+  
   return dataList
 }
 
@@ -159,27 +157,28 @@ app.get('/his',async function(req,res){
   
   dataList=[]
   for(const a in his.items){
-    let dur = his.items[a].track.duration_ms
-    const date2 =  new Date(1000*Math.round(dur/1000));
-    function pad(i) { return ('0'+i).slice(-2); }
-    var minutes = pad(date2.getUTCMinutes()) + ':' + pad(date2.getUTCSeconds());
-    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri, date: his.items[a].track.album.release_date, duration: minutes})
+    await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri,id: his.items[a].track.id})
+
   }
   res.json(await dataList)
 
 })
 
-// app.get('/his',async function(req,res){
-  
-//   const his = await getData('/me/player/recently-played/?limit=25');
-  
-//   dataList=[]
-//   for(const a in his.items){
-//     await dataList.push({name: his.items[a].track.name, pic: his.items[a].track.album.images[0].url, url: his.items[a].track.uri})
-//   }
-//   res.json(await dataList)
 
-// })
+app.get('/playlist',async function(req,res){
+  
+  const play = await getData('/me/playlists?limit=25&offset=0');
+  console.log(await play.items)
+  dataList=[]
+  for(const a in play.items){
+    await dataList.push({name: play.items[a].name, pic: play.items[a].images[0].url, play: play.items[a].uri, id: play.items[a].id})
+    console.log(dataList[a])
+  }
+  
+  res.json(await dataList)
+
+})
+
 
 
 

@@ -36,10 +36,10 @@ async function userInfo(){
 }
 
 
-async function topUserData(endpoint, div){
+async function stats(endpoint, div, type){
     var stats = await getStat(endpoint)
     var count = 0;
-    let list = document.getElementsByClassName("Songs")[div];
+    let list = document.getElementsByClassName(type)[div];
 
     stats.forEach((item)=>{
  
@@ -54,73 +54,50 @@ async function topUserData(endpoint, div){
     let pic = document.createElement("img");
     text.innerText = count + ". "+item.name;
     if(endpoint.includes("TopArt")){
-        text2.innerText = "Popularity\n" + item.popularity + "\n\nGenres\n" + item.genres;
+        percentage = 100 - item.popularity 
+        text2.innerText = "Popularity\n" + "Top " + percentage + "%" + "\n\nGenres\n" + item.genres;
+        text2.id = "songhis"
+        text2.style.color="#FFD700"
+        text2.style.Width="1000px"
+        text2.style.fontSize="20px"
+        div.appendChild(text2);
+    }
+    else if(endpoint.includes("playlist")){
+        let div2 = document.createElement("div")
+        div2.className = "Child2Text2"
+        div2.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/${item.id}?utm_source=generator" width="350px" height="375px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+        div.append(div2)
     }
     else{
-        text2.innerText = "Release Date\n" + item.date + "\n\nDuration\n" + item.duration;
+        let div2 = document.createElement("div")
+        div2.className = "Child2Text2"
+        div2.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${item.id}?utm_source=generator" width="350px" height="375px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+        div.append(div2)
     }
     pic.src = item.pic
     text.id = "songhis"
-    text2.id = "songhis"
+    
     pic.id = "Pic"
     link.href = item.url
     if(count<=3){
         text.style.color="#FFD700"
     }
-    text2.style.color="#E6E6FA"
-    text2.style.Width="1000px"
-    text2.style.fontSize="20px"
+
 
     
     link.appendChild(div)
     div.append(pic);
     div.appendChild(text);
-    div.appendChild(text2);
     list.appendChild(link)
     })
 }
-
-async function otherStats(){
-    var stats = await getStat('his')
-    var count = 0;
-    let list = document.getElementsByClassName("History")[0];
-    stats.forEach((item)=>{
-    count++
-    let div = document.createElement("div")
-    let link = document.createElement("a")
-    div.className="Child2"
-    let text = document.createElement("h5");
-    text.className="Child2Text"
-    let text2 = document.createElement("h5");
-    text2.className="Child2Text2"
-    let pic = document.createElement("img");
-    text.innerText = count + ". "+item.name;
-    text2.innerText = "Release Date\n" + item.date + "\n\nDuration\n" + item.duration;
-    pic.src = item.pic
-    text.id = "songhis"
-    text2.id = "songhis"
-    pic.id = "Pic"
-    link.href = item.url
-    text.style.color="#FFD700"
-    text2.style.color="#E6E6FA"
-    text2.style.Width="1000px"
-    text2.style.fontSize="20px"
-
-    link.appendChild(div)
-    div.append(pic);
-    div.appendChild(text);
-    div.appendChild(text2);
-    list.appendChild(link)
-
-    })
-}
-
 
 userInfo()
-topUserData('TopArt/short',0)
-topUserData('TopArt/medium',1)
-topUserData('TopArt/long',2)
-topUserData('TopSong/short',3)
-topUserData('TopSong/medium',4)
-topUserData('TopSong/long',5)
-otherStats()
+stats('TopArt/short',0,"Songs")
+stats('TopArt/medium',1,"Songs")
+stats('TopArt/long',2,"Songs")
+stats('TopSong/short',3,"Songs")
+stats('TopSong/medium',4,"Songs")
+stats('TopSong/long',5,"Songs")
+stats("his",0,"History")
+stats("playlist",0,"Playlists")
