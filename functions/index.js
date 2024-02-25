@@ -1,11 +1,22 @@
-const { query } = require('express')
 const express = require('express')
 const app = express()
+const serverless = require("serverless-http");
+const router = express.Router();
+
 const port =3002
 const querystring = require('querystring')
 const fetch = require('node-fetch')
+const path = require('path');
 
-app.use(express.static('public'))
+
+const index = path.join(__dirname, '..', '/public', 'index.html');
+
+app.use(`/`, router);
+app.use(express.static(path.join(__dirname, '..', '/public')));
+
+module.exports = app;
+module.exports.handler = serverless(app);
+
 
 global.access_token;
 const client_id = 'df40d135664a4a2cbae1c4db4de04977';
@@ -15,11 +26,11 @@ const client_secret = '5419800129b84a63920a4d20d12fbb6e'
 const scope = 'user-read-private user-read-email ugc-image-upload user-top-read user-library-read user-library-modify user-read-recently-played playlist-modify-private playlist-read-collaborative user-read-playback-state' 
 
 app.listen(process.env.PORT ||3002,() => {
-	console.log(`Example app listening at http://localhost:${port}`);
+	console.log(`Example app listening at http://localhost:${port}/.netlify/functions/index`);
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname,'/views/index.html')
+router.get('/', function(req, res) {
+  res.sendFile(index);
 });
 
 app.get('/login',  async function(req, res) {
@@ -172,7 +183,6 @@ app.get('/playlist',async function(req,res){
   dataList=[]
   for(const a in play.items){
     await dataList.push({name: play.items[a].name, pic: play.items[a].images[0].url, play: play.items[a].uri, id: play.items[a].id})
-    console.log(dataList[a])
   }
   
   res.json(await dataList)
