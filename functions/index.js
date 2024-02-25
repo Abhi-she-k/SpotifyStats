@@ -20,7 +20,8 @@ module.exports.handler = serverless(app);
 
 global.access_token;
 const client_id = 'df40d135664a4a2cbae1c4db4de04977';
-const local_host = 'http://localhost:3002'
+// const local_host = 'http://localhost:3002'
+const local_host = 'https://spotifystats-byabhishek.netlify.app'
 const redirect_uri = local_host+'/callback';
 const client_secret = '5419800129b84a63920a4d20d12fbb6e'
 const scope = 'user-read-private user-read-email ugc-image-upload user-top-read user-library-read user-library-modify user-read-recently-played playlist-modify-private playlist-read-collaborative user-read-playback-state' 
