@@ -11,7 +11,7 @@ const path = require('path');
 
 const index = path.join(__dirname, '..', '/public', 'index.html');
 
-app.use(`/`, router);
+app.use(`/.netlify/functions/index`, router);
 app.use(express.static(path.join(__dirname, '..', '/public')));
 
 module.exports = app;
